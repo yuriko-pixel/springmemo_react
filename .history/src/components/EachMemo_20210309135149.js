@@ -7,26 +7,22 @@ const Memo = (props) => {
     const [edit, SetEdit] = useState(false);
 
     useEffect(() => {
-        // const memoId = props.match.params.memoId;
-        // console.log(memoId);
-        const getData = () => {
-          var xhr = new XMLHttpRequest();
-      
-          xhr.onload = function() {
-              console.log('Success: ' + xhr.responseText);
-          };
-          
-          xhr.onerror = function() {
-              console.log('Error: '  + xhr.responseText);
-          };
-          
-          xhr.open('GET', 'http://localhost:8080/api/v1/memo/all', true);
-          xhr.withCredentials = true;
-          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-          xhr.setRequestHeader('Authorization',  'Basic ', btoa('system:password'));
-          xhr.send();
-        };
-        getData();
+        const memoId = props.match.params.memoId;
+        console.log(memoId);
+        fetch(
+          `http://localhost:8080/api/v1/memo/${memoId}`,
+          {
+            method: "GET"
+          }
+        )
+          .then(res => res.json())
+          .then(response => {
+            // let newState = Object.assign([],...memo_each);
+            // newState.push(response);
+            setEachMemo(response);
+            console.log(response);
+          })
+          .catch(error => console.log(error));
       }, []);
     return (
         <div className="eachMemo-container">

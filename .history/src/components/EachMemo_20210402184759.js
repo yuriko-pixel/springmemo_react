@@ -7,8 +7,8 @@ const Memo = (props) => {
     const [edit, SetEdit] = useState(false);
 
     useEffect(() => {
-        // const memoId = props.match.params.memoId;
-        // console.log(memoId);
+        const memoId = props.match.params.memoId;
+        console.log(memoId);
         const getData = () => {
           var xhr = new XMLHttpRequest();
       

@@ -16,6 +16,7 @@ import Moment from 'react-moment';
         })
         .then(response => response.json())
         .then(json => console.log(json));
+      };
     }
 
     useEffect(() => {
@@ -34,5 +35,5 @@ import Moment from 'react-moment';
           }
         </div>
     )
-}
+
 

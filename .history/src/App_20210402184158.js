@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from 'react';
-// import Nav from './components/Navbar'
+import Nav from './components/Navbar'
 import Footer from './components/Footer'
-// import Contents from './components/Contents'
-// import { Link } from 'react-router-dom'
+import Contents from './components/Contents'
+import { Link } from 'react-router-dom'
 import { BrowserRouter, Route } from 'react-router-dom';
 import CreateMemo from './components/CreateMemo'
 import About from './components/About'

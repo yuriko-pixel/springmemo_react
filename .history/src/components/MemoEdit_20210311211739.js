@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import ReactDOM from "react-dom";
 import {Link} from 'react-router-dom'
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
@@ -19,7 +20,7 @@ const MemoEdit = (props) => {
    
 
     if(memoList !== undefined) {
-        const memo_edit = memoList.filter(i=>i.memoid === url.substring(32));
+        const memo_edit = memoList.filter(i=>i.memoid == url.substring(32));
         console.log(props.props[0]);
         // console.log(memo_edit);
     }
@@ -30,14 +31,14 @@ const MemoEdit = (props) => {
         <div className="memodate">
           Published on:<br/>
           <Moment format="YYYY/MM/DD hh:mm">
-            {props.props[0].filter(i=>i.memoid === url.substring(32))[0].memodate}
+            {props.props[0].filter(i=>i.memoid == url.substring(32))[0].memodate}
           </Moment>
         </div>
         <input type="text" className="title-input"
-          value={props.props[0].filter(i=>i.memoid === url.substring(32))[0].memotitle}/>
+          value={props.props[0].filter(i=>i.memoid == url.substring(32))[0].memotitle}/>
           <SimpleMDE 
           onChange={(e) => {setMarkdown(e); setHtml(e)}} 
-          value={props.props[0].filter(i=>i.memoid === url.substring(32))[0].memomarkd}
+          value={props.props[0].filter(i=>i.memoid == url.substring(32))[0].memomarkd}
           />
           <div id="preview-con" >
             <h3>Preview</h3>

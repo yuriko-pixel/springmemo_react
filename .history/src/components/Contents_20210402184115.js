@@ -6,7 +6,7 @@ import Moment from 'react-moment';
     const [memo, setMemo] = useState([]); 
 
     const getData = ()=> {
-      fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
+      fetch('http://localhost:8080/api/v1/memo/all', {method:'GET', 
       headers: {
         'Authorization': 'Basic ' + btoa('system:password'),
         'Access-Control-Allow-Origin': '*'

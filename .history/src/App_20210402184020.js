@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from 'react';
-// import Nav from './components/Navbar'
+import Nav from './components/Navbar'
 import Footer from './components/Footer'
-// import Contents from './components/Contents'
-// import { Link } from 'react-router-dom'
+import Contents from './components/Contents'
+import { Link } from 'react-router-dom'
 import { BrowserRouter, Route } from 'react-router-dom';
 import CreateMemo from './components/CreateMemo'
 import About from './components/About'
@@ -35,37 +35,18 @@ function App() {
 
   useEffect(() => {
   
-    //  const getData = ()=> {
-    //   fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
-    //   headers: {
-    //     'Authorization': 'Basic ' + btoa('system:password'),
-    //     'Access-Control-Allow-Origin': '*'
-    //   },
-    //   mode: 'cors',
-    // credentials: 'include'
-    //     })
-    //     .then(response => response.json())
-    //     .then(json => console.log(json));
-    //  };
-
-    const getData = () => {
-    var xhr = new XMLHttpRequest();
-
-    xhr.onload = function() {
-        console.log('Success: ' + xhr.responseText);
-    };
-    
-    xhr.onerror = function() {
-        console.log('Error: '  + xhr.responseText);
-    };
-    
-    xhr.open('GET', 'http://localhost:8080/api/v1/memo/all', true);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Authorization',  'Basic ', btoa('system:password'));
-    xhr.send();
-  };
-
+     const getData = ()=> {
+      fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
+      headers: {
+        'Authorization': 'Basic ' + btoa('system:password'),
+        'Access-Control-Allow-Origin': '*'
+      },
+      mode: 'cors',
+    credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(json => console.log(json));
+     };
      getData();
     
   }, []);

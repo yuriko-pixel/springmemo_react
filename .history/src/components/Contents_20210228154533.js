@@ -6,16 +6,17 @@ import Moment from 'react-moment';
     const [memo, setMemo] = useState([]); 
 
     const getData = ()=> {
-      fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
-      headers: {
-        'Authorization': 'Basic ' + btoa('system:password'),
-        'Access-Control-Allow-Origin': '*'
-      },
-      mode: 'cors',
-    credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(json => console.log(json));
+      fetch('http://localhost:8080/api/v1/memo/all',{
+        mode: 'cors'
+      })
+
+      .then(response => response.json())
+      .then(data => {
+        let newState = Object.assign([], ...memo);
+        newState.push(data);
+        setMemo(newState);
+        console.log(data);
+      });
     }
 
     useEffect(() => {

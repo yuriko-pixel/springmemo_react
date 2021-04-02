@@ -23,7 +23,7 @@ const Navbar = (props)=> {
           <span className="linkmenu" onClick={()=> {
             changeClick();
           }}>&#8942;</span>
-          {clicked === true?(<ul className="linkUl">
+          {clicked == true?(<ul className="linkUl">
             <a href={'/Memo/Edit/'+props.memo.memoid} className="linkLi" value={props.memo.memoid}>Edit</a>
             <Link to="/" className="linkLi">Delete</Link>
           </ul>):(<div></div>)}
