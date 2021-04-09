@@ -34,19 +34,37 @@ function App() {
   // };
 
   useEffect(() => {
+  
+    //  const getData = ()=> {
+    //   fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
+    //   headers: {
+    //     'Authorization': 'Basic ' + btoa('system:password'),
+    //     'Access-Control-Allow-Origin': '*'
+    //   },
+    //   mode: 'cors',
+    // credentials: 'include'
+    //     })
+    //     .then(response => response.json())
+    //     .then(json => console.log(json));
+    //  };
 
-     const getData = ()=> {
-      fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
-      headers: {
-        'Authorization': 'Basic ' + btoa('system:password'),
-        'Access-Control-Allow-Origin': '*'
-      },
-      mode: 'cors',
-      credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(json => console.log(json));
-     };
+    const getData = () => {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onload = function() {
+        console.log('Success: ' + xhr.responseText);
+    };
+    
+    xhr.onerror = function() {
+        console.log('Error: '  + xhr.responseText);
+    };
+    
+    xhr.open('GET', 'https://yurikomemo.herokuapp.com/api/v1/memo/all', true);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Authorization',  'Basic '+ btoa('system:password'));
+    xhr.send();
+  };
 
      getData();
     
