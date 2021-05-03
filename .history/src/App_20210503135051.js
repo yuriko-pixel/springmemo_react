@@ -1,8 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import Nav from './components/Navbar'
+// import Nav from './components/Navbar'
 import Footer from './components/Footer'
-import Contents from './components/Contents'
-import { Link } from 'react-router-dom'
+// import Contents from './components/Contents'
+// import { Link } from 'react-router-dom'
 import { BrowserRouter, Route } from 'react-router-dom';
 import CreateMemo from './components/CreateMemo'
 import About from './components/About'
@@ -11,8 +11,11 @@ import Home from './components/Home'
 import EachMemo from './components/EachMemo'
 import MemoButton from './components/MemoButton'
 import MemoEdit from './components/MemoEdit'
+import appstyle from './styles/app.module.scss'
+
 function App() {
   const [memo, setMemo] = useState([]);
+  const [content, setContent] = useState([]);
   const notes = []
   
   // const getData = () => {
@@ -34,35 +37,42 @@ function App() {
   // };
 
   useEffect(() => {
-  
-      fetch('https://yurikomemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
+
+     const getData = ()=> {
+      fetch('https://springrmemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
       headers: {
         'Authorization': 'Basic ' + btoa('system:password'),
         'Access-Control-Allow-Origin': '*'
       },
       mode: 'cors',
-    credentials: 'include'
+      credentials: 'include'
         })
         .then(response => response.json())
-        .then(json => console.log(json));
-    
+        .then(json => {
+          console.log(json);
+          setMemo(json)
+          let arr = json.map(i => [i.memoid,i.memohtml.split('<p>')[1]]);
+
+        setContent(arr);
+        console.log(arr);
+        });
+     };
+
+     getData();
+     
   }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
       <MemoButton />
-        {/* <Nav /> */}
-        {/* {memo.length !==0?(<Route exact path='/Memo'><Home/></Route>):
-        (<Route exact path='/Memo'><Home props={memo}/></Route>)} */}
-        <div className="content">
+        <div className={appstyle.content}>
           <Route exact path="/"><Home/></Route>
-          <Route exact path='/Memo'><Memo props={memo}/></Route>
+          <Route exact path='/Memo'><Memo props={[memo,content]}/></Route>
           <Route path='/About' component={About}/>
           <Route path='/CreateMemo' component={CreateMemo}/>
           <Route exact path='/Memo/:memoId' component={EachMemo} />
           <Route path='/Memo/Edit/:memoId/'><MemoEdit props={memo}/></Route>
-          {/* <Route path='/Memo/Edit/:memoId/'><MemoEdit /></Route> */}
         </div>
         <Footer />
       </BrowserRouter>

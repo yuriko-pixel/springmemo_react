@@ -39,7 +39,7 @@ function App() {
   useEffect(() => {
 
      const getData = ()=> {
-      fetch('http://localhost:8080/api/v1/memo/all/', {method:'GET', 
+      fetch('https://springrmemo.herokuapp.com/api/v1/memo/all', {method:'GET', 
       headers: {
         'Authorization': 'Basic ' + btoa('system:password'),
         'Access-Control-Allow-Origin': '*'
