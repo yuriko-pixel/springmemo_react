@@ -1,0 +1,22 @@
+.memoContainer {
+    text-align: center;
+    margin: 0 auto;
+    width: 1000px;
+    border-radius: 10px;
+}
+
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.memo {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.titleCon {
+    display: flex;
+    margin: 30px 0 0 450px;
+  }
