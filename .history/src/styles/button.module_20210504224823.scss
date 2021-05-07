@@ -1,0 +1,33 @@
+.editbutton {
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    background: green;
+    margin: 5px;
+}
+
+.deletebutton {
+    width: 70px;
+    height: 30px;
+    border-radius: 3px;
+    background: red;
+    margin: 5px;
+}
+
+.right {
+    margin-left: 800px;
+}
+
+.flex {
+    display: flex;
+}
+
+.box {
+    width: 80px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.text, .goback {
+    margin: 0;
+}
