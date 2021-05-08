@@ -32,7 +32,7 @@ const MemoEdit = (props) => {
             })
             .then(response => {
               if (response.status == 200) {
-                document.location.href = "https://springreact-memo.netlify.app/";
+                document.location.href = "http://localhost:3000/";
               }})
             .then(json => {
               console.log(json);
