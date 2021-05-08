@@ -36,7 +36,7 @@ const MemoEditButton = ()=> {
     return (
         <div className={buttonstyle.right}>
             <div className={buttonstyle.flex}>
-                <Link to={`/${url.substring(26).split("/")[1]}/Edit`} className={buttonstyle.box}>
+                <Link to={`/Memo/${url.substring(26).split("/")[1]}/Edit`} className={buttonstyle.box}>
                     <FontAwesomeIcon icon={faPenFancy}  size="1.5x" style={{ color: 'red' }} />
                     <p className={buttonstyle.text}>Edit</p>
                 </Link>
