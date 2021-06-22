@@ -13,35 +13,51 @@ const MemoEdit = (props) => {
   let url = window.location.href;
 
   const handleInput = ()=> {
-      console.log(marked(markdown));
+      console.log(JSON.stringify(marked(markdown)));
+      if(props.props.length !== 0) {
+        let data = props.props.filter(i=>i.memoid === url.substring(26).split("/")[1])[0];
+        data.memomarkd = marked(markdown);
+        data.memodate = Date.now();
+        data = JSON.stringify(data);
+        const getData = ()=> {
+          fetch(process.env.REACT_APP_MEMOALL_URL, {method:'POST', 
+          headers: {
+            'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: data,
+          mode: 'cors',
+          credentials: 'include'
+            })
+            .then(response => {
+              if (response.status == 200) {
+                document.location.href = "http://localhost:3000";
+              }})
+            .then(json => {
+              console.log(json);
+            });
+        };
+      
+       getData();
+      }
   }
 
-  useEffect(()=> {
-    console.log(url.substring(32))
-    if(props.props.length !== 0) {
-    console.log(props.props.filter(i=>i.memoid == url.substring(32))[0])
-    }
-    // const memoList = props.props[0];
-    // if(memoList !== undefined) {
-    //     const memo_edit = memoList.filter(i=>i.memoid === url.substring(32));
-    //     console.log(props.props[0]);
-    // }
-  })
   if(props.props.length !== 0) {
     return(
       <div className={memoedits.createMemoCon}>
         <div className={memoedits.memodate}>
           Published on:<br/>
           <Moment format="YYYY/MM/DD hh:mm">
-            {props.props.filter(i=>i.memoid == url.substring(32))[0].memodate}
+            {props.props.filter(i=>i.memoid == url.substring(26).split("/")[1])[0].memodate}
           </Moment>
         </div>
         <input type="text" className={memoedits.titleInput}
-          value={props.props.filter(i=>i.memoid == url.substring(32))[0].memotitle}
+          value={props.props.filter(i=>i.memoid == url.substring(26).split("/")[1])[0].memotitle}
           />
           <SimpleMDE 
           onChange={(e) => {setMarkdown(e); setHtml(e)}} 
-          value={props.props.filter(i=>i.memoid == url.substring(32))[0].memomarkd}
+          value={props.props.filter(i=>i.memoid == url.substring(26).split("/")[1])[0].memomarkd}
           />
           <div className={memoedits.previewCon} >
             <h3>Preview</h3>
@@ -50,12 +66,11 @@ const MemoEdit = (props) => {
               ></div>
           </div>
           <div className={memoedits.center}>
-            <Link to="/" 
+            <button
                   className="btn2 btn-border-shadow btn-border-shadow--color" 
                   onClick={()=>handleInput()}
-            >SUBMIT</Link>
+            >SUBMIT</button>
           </div>
-          <GoBack/>
       </div>
   )
   } else {

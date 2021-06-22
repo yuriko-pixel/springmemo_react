@@ -15,14 +15,14 @@ const MemoEdit = (props) => {
   const handleInput = ()=> {
       console.log(JSON.stringify(marked(markdown)));
       if(props.props.length !== 0) {
-        let data = props.props.filter(i=>i.memoid == url.substring(26).split("/")[1])[0];
+        let data = props.props.filter(i=>i.memoid === url.substring(26).split("/")[1])[0];
         data.memomarkd = marked(markdown);
         data.memodate = Date.now();
         data = JSON.stringify(data);
         const getData = ()=> {
-          fetch(process.env.REACT_APP_TEMP=, {method:'POST', 
+          fetch(process.env.REACT_APP_MEMOALL_URL, {method:'POST', 
           headers: {
-            'Authorization': 'Basic ' + btoa('system:password'),
+            'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
           },
@@ -31,8 +31,8 @@ const MemoEdit = (props) => {
           credentials: 'include'
             })
             .then(response => {
-              if (response.status == 200) {
-                document.location.href = "https://springreact-memo.netlify.app/";
+              if (response.status === 200) {
+                document.location.href = "http://localhost:3000";
               }})
             .then(json => {
               console.log(json);
@@ -49,7 +49,7 @@ const MemoEdit = (props) => {
         <div className={memoedits.memodate}>
           Published on:<br/>
           <Moment format="YYYY/MM/DD hh:mm">
-            {props.props.filter(i=>i.memoid == url.substring(26).split("/")[1])[0].memodate}
+            {props.props.filter(i=>i.memoid === url.substring(26).split("/")[1])[0].memodate}
           </Moment>
         </div>
         <input type="text" className={memoedits.titleInput}

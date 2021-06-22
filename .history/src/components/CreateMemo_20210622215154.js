@@ -36,7 +36,7 @@ const CreateMemo = (props) => {
         credentials: 'include'
           })
           .then(response => {
-            if (response.status === 200) {
+            if (response.status == 200) {
               document.location.href = "http://localhost:3000/";
             }})
           .then(json => {

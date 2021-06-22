@@ -13,7 +13,34 @@ const MemoEdit = (props) => {
   let url = window.location.href;
 
   const handleInput = ()=> {
-      console.log(marked(markdown));
+      console.log(JSON.stringify(marked(markdown)));
+      if(props.props.length !== 0) {
+        let data = props.props.filter(i=>i.memoid === url.substring(26).split("/")[1])[0];
+        data.memomarkd = marked(markdown);
+        data.memodate = Date.now();
+        data = JSON.stringify(data);
+        const getData = ()=> {
+          fetch(process.env.REACT_APP_TEMP, {method:'POST', 
+          headers: {
+            'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          body: data,
+          mode: 'cors',
+          credentials: 'include'
+            })
+            .then(response => {
+              if (response.status == 200) {
+                document.location.href = "http://localhost:3000";
+              }})
+            .then(json => {
+              console.log(json);
+            });
+        };
+      
+       getData();
+      }
   }
 
   if(props.props.length !== 0) {
