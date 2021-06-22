@@ -16,7 +16,7 @@ const Home = () => {
             </div>
             <div className="btn-flex">
                 <p className={homestyle.memotext2}>Add New Memo</p>
-                <Link to="/CreateMemo"><img src={addmemo} className={homestyle.img} alt={addmemo}/></Link>
+                <Link to="/CreateMemo"><img src={addmemo} className={homestyle.img}/></Link>
             </div>
         </div>
     )

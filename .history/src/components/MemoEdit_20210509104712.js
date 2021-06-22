@@ -20,9 +20,9 @@ const MemoEdit = (props) => {
         data.memodate = Date.now();
         data = JSON.stringify(data);
         const getData = ()=> {
-          fetch(process.env.REACT_APP_TEMP, {method:'POST', 
+          fetch(process.env.REACT_APP_TEMP=, {method:'POST', 
           headers: {
-            'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
+            'Authorization': 'Basic ' + btoa('system:password'),
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
           },
@@ -32,7 +32,7 @@ const MemoEdit = (props) => {
             })
             .then(response => {
               if (response.status == 200) {
-                document.location.href = "http://localhost:3000";
+                document.location.href = "https://springreact-memo.netlify.app/";
               }})
             .then(json => {
               console.log(json);

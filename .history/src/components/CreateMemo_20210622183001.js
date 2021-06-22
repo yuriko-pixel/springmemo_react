@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import ReactDOM from "react-dom";
 import {Link} from 'react-router-dom'
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';

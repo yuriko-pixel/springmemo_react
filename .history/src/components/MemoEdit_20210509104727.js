@@ -22,7 +22,7 @@ const MemoEdit = (props) => {
         const getData = ()=> {
           fetch(process.env.REACT_APP_TEMP, {method:'POST', 
           headers: {
-            'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
+            'Authorization': 'Basic ' + btoa('system:password'),
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
           },

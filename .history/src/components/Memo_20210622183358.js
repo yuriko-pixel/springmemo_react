@@ -22,11 +22,13 @@ const Memo = (props)=> {
         data = data.filter(i=>i.deleted !== true);
         newState.push(data);
         setMemo(newState);
+
+        let arr = data.map(i => [i.memoid,i.memohtml]);
       });
   };
   useEffect(() => {
     
-  if(props.props === undefined) {
+  if(props.props == undefined) {
     
     getData();
   } else {
