@@ -21,7 +21,7 @@ const Memo = (props) => {
           console.log(json);
           setEachMemo(json);
         });
-    }, [props.match.params.memoId]);
+    }, []);
     
     useEffect(() => {
       get();

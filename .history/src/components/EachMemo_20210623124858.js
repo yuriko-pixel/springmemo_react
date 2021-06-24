@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import memostyle from '../styles/eachmemo.module.scss'
 import Moment from "react-moment";
 import MemoEditButton from '../components/MemoEditButton'
@@ -6,28 +6,26 @@ import axios from 'axios'
 
 const Memo = (props) => {
     const [memo_each,setEachMemo] = useState({});
-
-    const get = useCallback(async () => {
-      await fetch(`${process.env.REACT_APP_MEMO_URL}+${props.match.params.memoId}`, {method:'GET', 
-      headers: {
-        'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
-        'Access-Control-Allow-Origin': '*'
-      },
-      mode: 'cors',
-      credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(json => {
-          console.log(json);
-          setEachMemo(json);
-        });
-    }, [props.match.params.memoId]);
     
     useEffect(() => {
-      get();
-    }, [get]);
-
-
+      axios
+        .get(`${process.env.REACT_APP_MEMO_URL}+${props.match.params.memoId}`, {method:'GET', 
+            headers: {
+              'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME+":"+process.env.REACT_APP_PSW),
+              'Access-Control-Allow-Origin': '*'
+            },
+            mode: 'cors',
+            credentials: 'include'
+              })
+        .then(response => response.json())
+        .then(res => {
+          setEachMemo(res);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+  
+    }, [props.match.params.id]);
 
     // useEffect(() => {
         
