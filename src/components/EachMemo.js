@@ -2,7 +2,6 @@ import React, { useEffect, useState,useCallback } from "react";
 import memostyle from '../styles/eachmemo.module.scss'
 import Moment from "react-moment";
 import MemoEditButton from '../components/MemoEditButton'
-import axios from 'axios'
 
 const Memo = (props) => {
     const [memo_each,setEachMemo] = useState({});
